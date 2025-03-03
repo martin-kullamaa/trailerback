@@ -2,9 +2,12 @@ package ee.valiit.trailerback.service;
 
 import ee.valiit.trailerback.infrastructure.Error;
 import ee.valiit.trailerback.infrastructure.exception.DataNotFoundException;
+import ee.valiit.trailerback.infrastructure.exception.ForbiddenException;
+import ee.valiit.trailerback.persistance.profile.LoginResponseDto;
 import ee.valiit.trailerback.persistance.profile.Profile;
 
 
+import ee.valiit.trailerback.persistance.profile.ProfileMapper;
 import ee.valiit.trailerback.persistance.profile.ProfileRepository;
 import ee.valiit.trailerback.status.Status;
 import lombok.RequiredArgsConstructor;
@@ -12,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+import static ee.valiit.trailerback.infrastructure.Error.ACCOUNT_DEACTIVATED;
 import static ee.valiit.trailerback.infrastructure.Error.INCORRECT_CREDENTIALS;
 
 @Service
@@ -19,18 +23,19 @@ import static ee.valiit.trailerback.infrastructure.Error.INCORRECT_CREDENTIALS;
 public class LoginService {
 
     private final ProfileRepository profileRepository;
+    private final ProfileMapper profileMapper;
 
-    public void login(String username, String password) {
-
+    public LoginResponseDto login(String username, String password) {
+        System.out.println("olen siin");
         Profile profile = profileRepository.findUserBy(username, password)
                 .orElseThrow(() -> new DataNotFoundException(INCORRECT_CREDENTIALS.getMessage(), INCORRECT_CREDENTIALS.getErrorCode()));
 
-        // todo: verify user status, throw forbidden exception if status is invalid
+
         if (Status.ACTIVE.getCode().equals(profile.getStatus())) {
-
+            return profileMapper.toLoginResponseDto(profile);
+        } else {
+            throw new ForbiddenException(ACCOUNT_DEACTIVATED.getMessage(), ACCOUNT_DEACTIVATED.getErrorCode());
         }
-
-        // todo: create and return LoginResponseDto : userId roleId
 
     }
 }

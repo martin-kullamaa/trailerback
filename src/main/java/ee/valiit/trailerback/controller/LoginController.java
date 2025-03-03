@@ -1,5 +1,6 @@
 package ee.valiit.trailerback.controller;
 
+import ee.valiit.trailerback.persistance.profile.LoginResponseDto;
 import ee.valiit.trailerback.service.LoginService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,8 +14,8 @@ public class LoginController {
     private final LoginService loginService;
 
     @GetMapping("/login")
-    public void login(@RequestParam String username, @RequestParam String password){
-        loginService.login(username, password);
+    public LoginResponseDto login(@RequestParam String username, @RequestParam String password){
+        return loginService.login(username, password);
     }
 
 }
