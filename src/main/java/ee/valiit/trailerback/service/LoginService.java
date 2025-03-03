@@ -23,7 +23,6 @@ public class LoginService {
     private final ProfileMapper profileMapper;
 
     public LoginResponseDto login(String username, String password) {
-        System.out.println("olen siin");
         Profile profile = profileRepository.findUserBy(username, password)
                 .orElseThrow(() -> new DataNotFoundException(INCORRECT_CREDENTIALS.getMessage(), INCORRECT_CREDENTIALS.getErrorCode()));
 
