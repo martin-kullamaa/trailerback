@@ -1,7 +1,6 @@
-package ee.valiit.trailerback.persistance.profile;
+package ee.valiit.trailerback.controller;
 
-import ee.valiit.trailerback.persistance.role.Role;
-import jakarta.validation.constraints.NotNull;
+import ee.valiit.trailerback.persistance.profile.Profile;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

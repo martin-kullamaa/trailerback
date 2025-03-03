@@ -1,9 +1,8 @@
 package ee.valiit.trailerback.service;
 
-import ee.valiit.trailerback.infrastructure.Error;
 import ee.valiit.trailerback.infrastructure.exception.DataNotFoundException;
 import ee.valiit.trailerback.infrastructure.exception.ForbiddenException;
-import ee.valiit.trailerback.persistance.profile.LoginResponseDto;
+import ee.valiit.trailerback.controller.LoginResponseDto;
 import ee.valiit.trailerback.persistance.profile.Profile;
 
 
@@ -12,8 +11,6 @@ import ee.valiit.trailerback.persistance.profile.ProfileRepository;
 import ee.valiit.trailerback.status.Status;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
 
 import static ee.valiit.trailerback.infrastructure.Error.ACCOUNT_DEACTIVATED;
 import static ee.valiit.trailerback.infrastructure.Error.INCORRECT_CREDENTIALS;

@@ -1,6 +1,5 @@
 package ee.valiit.trailerback.controller;
 
-import ee.valiit.trailerback.persistance.profile.LoginResponseDto;
 import ee.valiit.trailerback.service.LoginService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
