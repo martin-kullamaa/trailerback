@@ -1,5 +1,5 @@
 -- Created by Vertabelo (http://vertabelo.com)
--- Last modification date: 2025-02-28 11:03:52.002
+-- Last modification date: 2025-03-03 07:23:36.823
 
 -- tables
 -- Table: equipment
@@ -11,16 +11,6 @@ CREATE TABLE equipment (
                            CONSTRAINT equipment_pk PRIMARY KEY (id)
 );
 
--- Table: location_coordinat
-CREATE TABLE location_coordinat (
-                                    id serial  NOT NULL,
-                                    location_id int  NOT NULL,
-                                    latitude decimal(10,7)  NOT NULL,
-                                    longitude decimal(10,7)  NOT NULL,
-                                    sequence int  NOT NULL,
-                                    CONSTRAINT location_coordinat_pk PRIMARY KEY (id)
-);
-
 -- Table: location_start
 CREATE TABLE location_start (
                                 id serial  NOT NULL,
@@ -28,6 +18,16 @@ CREATE TABLE location_start (
                                 latitude decimal(10,7)  NOT NULL,
                                 longitude decimal(10,7)  NOT NULL,
                                 CONSTRAINT location_start_pk PRIMARY KEY (id)
+);
+
+-- Table: location_stop
+CREATE TABLE location_stop (
+                               id serial  NOT NULL,
+                               location_id int  NOT NULL,
+                               latitude decimal(10,7)  NOT NULL,
+                               longitude decimal(10,7)  NOT NULL,
+                               sequence int  NOT NULL,
+                               CONSTRAINT location_stop_pk PRIMARY KEY (id)
 );
 
 -- Table: profile
@@ -96,8 +96,8 @@ CREATE TABLE type (
 );
 
 -- foreign keys
--- Reference: location_coordinat_location (table: location_coordinat)
-ALTER TABLE location_coordinat ADD CONSTRAINT location_coordinat_location
+-- Reference: location_coordinat_location (table: location_stop)
+ALTER TABLE location_stop ADD CONSTRAINT location_coordinat_location
     FOREIGN KEY (location_id)
         REFERENCES location_start (id)
         NOT DEFERRABLE
