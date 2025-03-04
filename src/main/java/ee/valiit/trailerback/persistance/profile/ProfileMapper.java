@@ -1,6 +1,7 @@
 package ee.valiit.trailerback.persistance.profile;
 
 import ee.valiit.trailerback.controller.LoginResponseDto;
+import ee.valiit.trailerback.controller.register.NewProfileDto;
 import ee.valiit.trailerback.status.Status;
 import org.mapstruct.*;
 
@@ -10,5 +11,11 @@ public interface ProfileMapper {
     @Mapping(source = "id", target = "profileId")
     @Mapping(source = "role.name", target = "roleName")
     LoginResponseDto toLoginResponseDto(Profile profile);
+
+    @Mapping(source = "email", target = "email")
+    @Mapping(source = "username", target = "username")
+    @Mapping(source = "password", target = "password")
+    @Mapping(expression = "java(Status.ACTIVE.getCode())", target = "status")
+    Profile toProfile(NewProfileDto newProfileDto);
 
 }
