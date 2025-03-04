@@ -14,6 +14,6 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 public class LoginResponseDto implements Serializable {
-    private Integer userId;
+    private Integer profileId;
     private String roleName;
 }
