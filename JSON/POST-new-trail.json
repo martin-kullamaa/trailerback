@@ -1,0 +1,23 @@
+{
+  "profileId": 0,
+  "trailName": "",
+  "trailDescription": "Scenic route through the mountains.",
+  "trailLength": 12.5,
+
+  "startName": "Trailhead",
+  "startLatitude": 58.1,
+  "startLongitude": 26.2,
+
+  "locations": [
+    {
+      "latitude": 58.2,
+      "longitude": 26.3,
+      "sequence": 1
+    },
+    {
+      "latitude": 58.3,
+      "longitude": 26.4,
+      "sequence": 2
+    }
+  ]
+}
