@@ -17,6 +17,7 @@ public class LocationService {
     private final LocationStartMapper locationStartMapper;
 
     public List<LocationStartDto> findLocationStarts() {
+        // todo: add check if trail that has start is "A"
         List<LocationStart> locationStarts = locationStartRepository.findAll();
         return locationStartMapper.locationStartToDtos(locationStarts);
     }
