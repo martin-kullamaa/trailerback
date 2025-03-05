@@ -1,6 +1,6 @@
 package ee.valiit.trailerback.persistance.locationstart;
 
-import ee.valiit.trailerback.controller.LocationStartDto;
+import ee.valiit.trailerback.controller.location.LocationStartDto;
 import org.mapstruct.*;
 
 import java.util.List;

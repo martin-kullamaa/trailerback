@@ -1,6 +1,6 @@
 package ee.valiit.trailerback.persistance.profile;
 
-import ee.valiit.trailerback.controller.LoginResponseDto;
+import ee.valiit.trailerback.controller.login.LoginResponseDto;
 import ee.valiit.trailerback.controller.register.NewProfileDto;
 import ee.valiit.trailerback.status.Status;
 import org.mapstruct.*;

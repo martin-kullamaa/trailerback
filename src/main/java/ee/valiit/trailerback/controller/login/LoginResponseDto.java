@@ -1,4 +1,4 @@
-package ee.valiit.trailerback.controller;
+package ee.valiit.trailerback.controller.login;
 
 import ee.valiit.trailerback.persistance.profile.Profile;
 import lombok.AllArgsConstructor;

@@ -1,4 +1,4 @@
-package ee.valiit.trailerback.controller;
+package ee.valiit.trailerback.controller.location;
 
 import ee.valiit.trailerback.service.LocationService;
 import lombok.RequiredArgsConstructor;
@@ -13,7 +13,7 @@ public class LocationController {
 
     private final LocationService locationService;
 
-    @GetMapping("/")
+    @GetMapping("/home")
     public List<LocationStartDto> findLocationStarts() {
         return locationService.findLocationStarts();
     }

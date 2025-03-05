@@ -2,7 +2,7 @@ package ee.valiit.trailerback.service;
 
 import ee.valiit.trailerback.infrastructure.exception.DataNotFoundException;
 import ee.valiit.trailerback.infrastructure.exception.ForbiddenException;
-import ee.valiit.trailerback.controller.LoginResponseDto;
+import ee.valiit.trailerback.controller.login.LoginResponseDto;
 import ee.valiit.trailerback.persistance.profile.Profile;
 
 

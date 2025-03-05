@@ -1,4 +1,4 @@
-package ee.valiit.trailerback.controller;
+package ee.valiit.trailerback.controller.location;
 
 import ee.valiit.trailerback.persistance.locationstart.LocationStart;
 import jakarta.validation.constraints.NotNull;
