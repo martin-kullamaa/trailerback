@@ -23,8 +23,5 @@ public class ProfileService {
         Profile profile = profileMapper.toProfile(newProfileDto);
         profile.setRole(role);
         profileRepository.save(profile);
-
-
-
     }
 }
