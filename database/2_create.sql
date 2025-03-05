@@ -1,5 +1,5 @@
 -- Created by Vertabelo (http://vertabelo.com)
--- Last modification date: 2025-03-03 07:23:36.823
+-- Last modification date: 2025-03-05 13:02:52.85
 
 -- tables
 -- Table: equipment
@@ -23,7 +23,7 @@ CREATE TABLE location_start (
 -- Table: location_stop
 CREATE TABLE location_stop (
                                id serial  NOT NULL,
-                               location_id int  NOT NULL,
+                               location_start_id int  NOT NULL,
                                latitude decimal(10,7)  NOT NULL,
                                longitude decimal(10,7)  NOT NULL,
                                sequence int  NOT NULL,
@@ -96,9 +96,9 @@ CREATE TABLE type (
 );
 
 -- foreign keys
--- Reference: location_coordinat_location (table: location_stop)
-ALTER TABLE location_stop ADD CONSTRAINT location_coordinat_location
-    FOREIGN KEY (location_id)
+-- Reference: location_stop_location_start (table: location_stop)
+ALTER TABLE location_stop ADD CONSTRAINT location_stop_location_start
+    FOREIGN KEY (location_start_id)
         REFERENCES location_start (id)
         NOT DEFERRABLE
             INITIALLY IMMEDIATE
