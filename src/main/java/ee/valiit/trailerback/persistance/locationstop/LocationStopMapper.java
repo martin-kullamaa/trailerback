@@ -1,7 +1,6 @@
 package ee.valiit.trailerback.persistance.locationstop;
 
 import ee.valiit.trailerback.controller.location.LocationStopDto;
-import ee.valiit.trailerback.controller.trailcontroller.NewTrailDto;
 import ee.valiit.trailerback.status.Status;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

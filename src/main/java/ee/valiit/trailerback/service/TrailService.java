@@ -1,8 +1,7 @@
 package ee.valiit.trailerback.service;
 
 import ee.valiit.trailerback.controller.location.LocationStopDto;
-import ee.valiit.trailerback.controller.trailcontroller.NewTrailDto;
-import ee.valiit.trailerback.infrastructure.Error;
+import ee.valiit.trailerback.controller.trail.NewTrailDto;
 import ee.valiit.trailerback.infrastructure.exception.DataNotFoundException;
 import ee.valiit.trailerback.persistance.locationstart.LocationStart;
 import ee.valiit.trailerback.persistance.locationstart.LocationStartMapper;
@@ -16,11 +15,9 @@ import ee.valiit.trailerback.persistance.trail.Trail;
 import ee.valiit.trailerback.persistance.trail.TrailMapper;
 import ee.valiit.trailerback.persistance.trail.TrailRepository;
 import lombok.RequiredArgsConstructor;
-import org.mapstruct.Mapping;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.Instant;
 import java.util.List;
 
 import static ee.valiit.trailerback.infrastructure.Error.FOREIGN_KEY_NOT_FOUND;

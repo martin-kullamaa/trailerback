@@ -1,7 +1,7 @@
 package ee.valiit.trailerback.persistance.locationstart;
 
 import ee.valiit.trailerback.controller.location.LocationStartDto;
-import ee.valiit.trailerback.controller.trailcontroller.NewTrailDto;
+import ee.valiit.trailerback.controller.trail.NewTrailDto;
 import org.mapstruct.*;
 
 import java.util.List;

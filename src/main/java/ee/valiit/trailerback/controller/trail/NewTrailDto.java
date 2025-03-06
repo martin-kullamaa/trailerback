@@ -1,4 +1,4 @@
-package ee.valiit.trailerback.controller.trailcontroller;
+package ee.valiit.trailerback.controller.trail;
 
 
 import ee.valiit.trailerback.controller.location.LocationStopDto;
