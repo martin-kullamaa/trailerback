@@ -20,6 +20,7 @@ import org.mapstruct.Mapping;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.Instant;
 import java.util.List;
 
 import static ee.valiit.trailerback.infrastructure.Error.FOREIGN_KEY_NOT_FOUND;
@@ -42,6 +43,8 @@ public class TrailService {
         // LocationStart tabeli rea loomine ja salvestamine
         LocationStart locationStart = locationStartMapper.newTrailDtoToLocationStart(newTrailDto);
         locationStartRepository.save(locationStart);
+        // todo: delete later
+        System.out.println("Saved LocationStart ID: " + locationStart.getId());
 
         // Trail tabeli rea loomine ja salvestamine
         Trail trail = trailMapper.newTrailDtoToTrail(newTrailDto);

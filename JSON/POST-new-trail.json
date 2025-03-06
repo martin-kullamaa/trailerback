@@ -21,3 +21,20 @@
     }
   ]
 }
+
+{
+  "profileId": 1,
+  "trailName": "raja nimi on siin",
+  "trailDescription": "mega äge rada on",
+  "trailLength": 12.3,
+  "startName": "vanaema juurest",
+  "startLatitude": 12.2343,
+  "startLongitude": 13.234234,
+  "locationStopDtos": [
+    {
+      "latitude": 12.2343,
+      "longitude": 12.2343,
+      "sequence": 1
+    }
+  ]
+}

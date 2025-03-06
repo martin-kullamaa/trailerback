@@ -9,7 +9,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.math.BigDecimal;
-import java.time.Instant;
 
 @Getter
 @Setter
@@ -44,9 +43,9 @@ public class Trail {
     @Column(name = "length", nullable = false, precision = 4, scale = 1)
     private BigDecimal length;
 
-    @NotNull
-    @Column(name = "\"timestamp\"", nullable = false)
-    private Instant timestamp;
+//    @NotNull
+//    @Column(name = "\"timestamp\"", nullable = false)
+//    private Instant timestamp;
 
     @Size(max = 1)
     @NotNull

@@ -20,7 +20,7 @@ public class LocationStop {
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "location_id", nullable = false)
+    @JoinColumn(name = "location_start_id", nullable = false)
     private LocationStart location;
 
     @NotNull
