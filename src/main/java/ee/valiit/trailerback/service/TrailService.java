@@ -35,7 +35,7 @@ public class TrailService {
     private final LocationStopRepository locationStopRepository;
 
     @Transactional
-    public void addTrailWithLocations(NewTrailDto newTrailDto) {
+    public Integer addTrailWithLocations(NewTrailDto newTrailDto) {
 
         // LocationStart tabeli rea loomine ja salvestamine
         LocationStart locationStart = locationStartMapper.newTrailDtoToLocationStart(newTrailDto);
@@ -58,5 +58,7 @@ public class TrailService {
             locationStop.setLocation(locationStart);
             locationStopRepository.save(locationStop);
         }
+
+        return trail.getId();
     }
 }
