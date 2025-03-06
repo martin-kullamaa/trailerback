@@ -8,9 +8,9 @@ INSERT INTO trailer.location_start (id, name, latitude, longitude) VALUES (defau
 /* loob traili */
 INSERT INTO trailer.trail (id, profile_id, location_start_id, name, description, length, status) VALUES (default, 1, 1, 'mingi matk', 'väga tore ja vahva matk.', 10.0, 'A');
 /* loob varustust */
-INSERT INTO trailer.equipment (id, name, status, timestamps) VALUES (default, 'saapad', 'A', '2025-02-28 15:56:43.000000');
-INSERT INTO trailer.equipment (id, name, status, timestamps) VALUES (default, 'kindad', 'A', '2025-02-28 15:56:45.000000');
-INSERT INTO trailer.equipment (id, name, status, timestamps) VALUES (default, 'telk', 'A', '2025-02-28 15:56:46.000000');
+INSERT INTO trailer.equipment (id, name, status) VALUES (default, 'saapad', 'A');
+INSERT INTO trailer.equipment (id, name, status) VALUES (default, 'kindad', 'A');
+INSERT INTO trailer.equipment (id, name, status) VALUES (default, 'telk', 'A');
 /* valib varustuse */
 INSERT INTO trailer.trail_equipment (id, equipment_id, trail_id) VALUES (default, 1, 1);
 INSERT INTO trailer.trail_equipment (id, equipment_id, trail_id) VALUES (default, 2, 1);

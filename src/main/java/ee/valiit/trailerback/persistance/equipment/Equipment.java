@@ -5,6 +5,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.Instant;
 
@@ -28,8 +29,8 @@ public class Equipment {
     @Column(name = "status", nullable = false, length = 1)
     private String status;
 
-    @NotNull
-    @Column(name = "timestamps", nullable = false)
-    private Instant timestamps;
+    @CreationTimestamp
+    @Column(name = "timestamp", nullable = false)
+    private Instant timestamp;
 
 }

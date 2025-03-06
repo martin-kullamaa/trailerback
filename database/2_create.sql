@@ -7,7 +7,7 @@ CREATE TABLE equipment (
                            id serial  NOT NULL,
                            name varchar(255)  NOT NULL,
                            status varchar(1)  NOT NULL,
-                           timestamps timestamp  NOT NULL,
+                           timestamp timestamp  NOT NULL DEFAULT CURRENT_TIMESTAMP,
                            CONSTRAINT equipment_pk PRIMARY KEY (id)
 );
 
