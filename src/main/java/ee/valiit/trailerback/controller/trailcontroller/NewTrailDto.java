@@ -1,6 +1,7 @@
 package ee.valiit.trailerback.controller.trailcontroller;
 
 
+import ee.valiit.trailerback.controller.location.LocationStopDto;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;

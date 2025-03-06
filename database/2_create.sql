@@ -55,8 +55,8 @@ CREATE TABLE trail (
                        location_start_id int  NOT NULL,
                        name varchar(255)  NOT NULL,
                        description text  NOT NULL,
-                       lengh decimal(4,1)  NOT NULL,
-                       timestamp timestamp  NOT NULL,
+                       length decimal(4,1)  NOT NULL,
+                       timestamp timestamp  NOT NULL DEFAULT CURRENT_TIMESTAMP,
                        status varchar(1)  NOT NULL,
                        CONSTRAINT trail_pk PRIMARY KEY (id)
 );

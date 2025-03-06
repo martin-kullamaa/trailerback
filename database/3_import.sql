@@ -6,7 +6,7 @@ INSERT INTO trailer.profile (id, role_id, username, password, email, status) VAL
 /* loob start punkti */
 INSERT INTO trailer.location_start (id, name, latitude, longitude) VALUES (default, 'mingi koht', 59.4338103, 24.6939546);
 /* loob traili */
-INSERT INTO trailer.trail (id, profile_id, location_start_id, name, description, lengh, timestamp, status) VALUES (default, 1, 1, 'mingi matk', 'väga tore ja vahva matk.', 10.0, '2025-02-28 15:35:29.000000', 'A');
+INSERT INTO trailer.trail (id, profile_id, location_start_id, name, description, length, status) VALUES (default, 1, 1, 'mingi matk', 'väga tore ja vahva matk.', 10.0, 'A');
 /* loob varustust */
 INSERT INTO trailer.equipment (id, name, status, timestamps) VALUES (default, 'saapad', 'A', '2025-02-28 15:56:43.000000');
 INSERT INTO trailer.equipment (id, name, status, timestamps) VALUES (default, 'kindad', 'A', '2025-02-28 15:56:45.000000');

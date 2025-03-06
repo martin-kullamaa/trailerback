@@ -14,8 +14,7 @@ import java.math.BigDecimal;
 @Table(name = "location_stop", schema = "trailer")
 public class LocationStop {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "location_stop_id_gen")
-    @SequenceGenerator(name = "location_stop_id_gen", sequenceName = "location_stop_id_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Integer id;
 

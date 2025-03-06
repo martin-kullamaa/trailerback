@@ -17,8 +17,7 @@ import java.time.Instant;
 @Table(name = "trail", schema = "trailer")
 public class Trail {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "trail_id_gen")
-    @SequenceGenerator(name = "trail_id_gen", sequenceName = "trail_id_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Integer id;
 
@@ -42,8 +41,8 @@ public class Trail {
     private String description;
 
     @NotNull
-    @Column(name = "lengh", nullable = false, precision = 4, scale = 1)
-    private BigDecimal lengh;
+    @Column(name = "length", nullable = false, precision = 4, scale = 1)
+    private BigDecimal length;
 
     @NotNull
     @Column(name = "\"timestamp\"", nullable = false)

@@ -14,10 +14,7 @@ import java.time.Instant;
 @Table(name = "equipment", schema = "trailer")
 public class Equipment {
     @Id
-    // @GeneratedValue(strategy = GenerationType.IDENTITY)
-    // todo: ilmselt bugi generatoritega
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "equipment_id_gen")
-    @SequenceGenerator(name = "equipment_id_gen", sequenceName = "equipment_id_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Integer id;
 

@@ -13,8 +13,7 @@ import lombok.Setter;
 @Table(name = "trail_type", schema = "trailer")
 public class TrailType {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "trail_type_id_gen")
-    @SequenceGenerator(name = "trail_type_id_gen", sequenceName = "trail_type_id_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Integer id;
 
