@@ -33,12 +33,15 @@ public interface TrailPictureMapper {
         return (value != null) ? Base64.getEncoder().encodeToString(value) : null;
     }
 
-    // Convert Base64 String to byte[]
     @Named("toData")
     default byte[] toData(String value) {
         if (value == null || value.isEmpty()) {
             return null;
         }
-        return Base64.getDecoder().decode(value);
+        // Remove MIME prefix if present.
+        if (value.startsWith("data:")) {
+            value = value.substring(value.indexOf(",") + 1);
+        }
+        return java.util.Base64.getDecoder().decode(value);
     }
 }
