@@ -17,7 +17,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 public class TrailPictureDto implements Serializable {
     @NotNull
-    private byte[] data;
+    private String data;
     @Size(max = 255)
     private String name;
 }
