@@ -93,4 +93,10 @@ public class TrailService {
         trailType.setType(type);
         trailTypeRepository.save(trailType);
     }
+
+    public void deleteTrailType(Integer trailId, Integer typeId) {
+        Trail trail = trailRepository.getReferenceById(trailId);
+        Type type = typeRepository.getReferenceById(typeId);
+        trailTypeRepository.deleteByTrailAndType(trail, type);
+    }
 }

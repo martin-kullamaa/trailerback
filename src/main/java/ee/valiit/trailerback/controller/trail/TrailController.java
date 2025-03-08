@@ -31,4 +31,10 @@ public class TrailController {
     public void addTrailType(@RequestParam Integer trailId, @RequestParam Integer typeId){
         trailService.addTrailType(trailId, typeId);
     }
+
+    @DeleteMapping("/trail/type")
+    @Operation(summary = "Deletes trailType row")
+    public void deleteTrailType(@RequestParam Integer trailId, @RequestParam Integer typeId){
+        trailService.deleteTrailType(trailId, typeId);
+    }
 }
