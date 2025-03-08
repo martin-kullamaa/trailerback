@@ -2,6 +2,7 @@ package ee.valiit.trailerback.service;
 
 import ee.valiit.trailerback.controller.location.LocationStopDto;
 import ee.valiit.trailerback.controller.trail.NewTrailDto;
+import ee.valiit.trailerback.controller.type.TypeDto;
 import ee.valiit.trailerback.infrastructure.exception.DataNotFoundException;
 import ee.valiit.trailerback.persistance.locationstart.LocationStart;
 import ee.valiit.trailerback.persistance.locationstart.LocationStartMapper;
@@ -14,10 +15,15 @@ import ee.valiit.trailerback.persistance.profile.ProfileRepository;
 import ee.valiit.trailerback.persistance.trail.Trail;
 import ee.valiit.trailerback.persistance.trail.TrailMapper;
 import ee.valiit.trailerback.persistance.trail.TrailRepository;
+import ee.valiit.trailerback.persistance.trailtype.TrailType;
+import ee.valiit.trailerback.persistance.trailtype.TrailTypeRepository;
+import ee.valiit.trailerback.persistance.type.Type;
+import ee.valiit.trailerback.persistance.type.TypeMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static ee.valiit.trailerback.infrastructure.Error.FOREIGN_KEY_NOT_FOUND;
@@ -33,6 +39,8 @@ public class TrailService {
     private final ProfileRepository profileRepository;
     private final LocationStopMapper locationStopMapper;
     private final LocationStopRepository locationStopRepository;
+    private final TrailTypeRepository trailTypeRepository;
+    private final TypeMapper typeMapper;
 
     @Transactional
     public Integer addTrailWithLocations(NewTrailDto newTrailDto) {
@@ -60,5 +68,15 @@ public class TrailService {
         }
 
         return trail.getId();
+    }
+
+    public List<TypeDto> getTrailType(Integer trailId) {
+        List<TrailType> trailTypes = trailTypeRepository.findByTrailId(trailId);
+        List<TypeDto> typeDtos = new ArrayList<>();
+        for (TrailType trailType : trailTypes){
+            Type type = trailType.getType();
+            typeDtos.add(typeMapper.typeToTypeDto(type));
+        }
+        return typeDtos;
     }
 }
