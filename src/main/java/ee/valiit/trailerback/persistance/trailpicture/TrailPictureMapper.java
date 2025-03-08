@@ -4,7 +4,6 @@ import ee.valiit.trailerback.controller.picture.TrailPictureDto;
 import ee.valiit.trailerback.status.Status;
 import org.mapstruct.*;
 import org.mapstruct.MappingConstants;
-import java.util.Base64;
 import java.util.List;
 
 @Mapper(
@@ -16,7 +15,7 @@ public interface TrailPictureMapper {
 
     // Mapping from entity to DTO:
     @Mapping(source = "name", target = "name")
-    @Mapping(source = "data", target = "data", qualifiedByName = "byteToBase64")
+    @Mapping(source = "data", target = "data", qualifiedByName = "byteToBase64WithPrefix")
     TrailPictureDto trailPictureToTrailPictureDto(TrailPicture trailPicture);
 
     List<TrailPictureDto> trailPictureToTrailPictureDtos(List<TrailPicture> trailPictures);
@@ -28,9 +27,13 @@ public interface TrailPictureMapper {
     TrailPicture trailPictureDtoToTrailPicture(TrailPictureDto trailPictureDto);
 
     // Convert byte[] to Base64 String
-    @Named("byteToBase64")
-    default String byteToBase64(byte[] value) {
-        return (value != null) ? Base64.getEncoder().encodeToString(value) : null;
+    @Named("byteToBase64WithPrefix")
+    default String byteToBase64WithPrefix(byte[] data) {
+        if (data == null) {
+            return null;
+        }
+        // Here you assume JPEG; adjust if necessary (e.g., check file extension/type).
+        return "data:image/jpeg;base64," + java.util.Base64.getEncoder().encodeToString(data);
     }
 
     @Named("toData")

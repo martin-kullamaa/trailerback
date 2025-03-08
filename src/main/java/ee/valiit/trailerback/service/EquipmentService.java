@@ -1,6 +1,7 @@
 package ee.valiit.trailerback.service;
 
 import ee.valiit.trailerback.controller.equipment.EquipmentDto;
+import ee.valiit.trailerback.controller.equipment.NewEquipmentDto;
 import ee.valiit.trailerback.persistance.equipment.Equipment;
 import ee.valiit.trailerback.persistance.equipment.EquipmentMapper;
 import ee.valiit.trailerback.persistance.equipment.EquipmentRepository;
@@ -22,7 +23,9 @@ public class EquipmentService {
     }
 
     public void addEquipment(String equipmentName) {
-        Equipment equipment = equipmentMapper.equipmentDtoToEquipment(new EquipmentDto(equipmentName));
+        NewEquipmentDto newEquipmentDto = new NewEquipmentDto();
+        newEquipmentDto.setName(equipmentName);
+        Equipment equipment = equipmentMapper.equipmentDtoToEquipment(newEquipmentDto);
         equipmentRepository.save(equipment);
     }
 }

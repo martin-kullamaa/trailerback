@@ -23,8 +23,8 @@ public class PictureController {
     }
 
     @DeleteMapping("/picture")
-    public void deleteTrailPicture(@RequestParam Integer pictureId){
-        pictureService.deleteTrailPicture(pictureId);
+    public void deleteTrailPicture(@RequestParam Integer trailId, @RequestParam String pictureName){
+        pictureService.deleteTrailPicture(trailId, pictureName);
     }
 
 }

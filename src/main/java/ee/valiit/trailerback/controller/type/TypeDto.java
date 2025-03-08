@@ -16,6 +16,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 public class TypeDto implements Serializable {
+    private Integer typeId;
     @NotNull
     @Size(max = 255)
     private String name;

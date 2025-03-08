@@ -8,6 +8,7 @@ import java.util.List;
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.SPRING)
 public interface TypeMapper {
 
+    @Mapping(source = "id", target = "typeId")
     @Mapping(source = "name", target = "name")
     TypeDto typeToTypeDto(Type type);
 

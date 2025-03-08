@@ -1,7 +1,6 @@
 package ee.valiit.trailerback.service;
 
 import ee.valiit.trailerback.controller.picture.TrailPictureDto;
-import ee.valiit.trailerback.infrastructure.Error;
 import ee.valiit.trailerback.infrastructure.exception.DataNotFoundException;
 import ee.valiit.trailerback.persistance.trail.Trail;
 import ee.valiit.trailerback.persistance.trail.TrailRepository;
@@ -40,7 +39,8 @@ public class PictureService {
         return trailPictureMapper.trailPictureToTrailPictureDtos(trailPictures);
     }
 
-    public void deleteTrailPicture(Integer trailId) {
-        trailPictureRepository.deleteById(trailId);
+    public void deleteTrailPicture(Integer trailId, String pictureName) {
+        Trail trail = trailRepository.getReferenceById(trailId);
+        trailPictureRepository.deleteByTrailAndPictureName(trail, pictureName);
     }
 }
