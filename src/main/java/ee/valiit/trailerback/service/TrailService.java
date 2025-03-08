@@ -88,7 +88,9 @@ public class TrailService {
                 .orElseThrow(() -> new DataNotFoundException(PRIMARY_KEY_NOT_FOUND.getMessage(), PRIMARY_KEY_NOT_FOUND.getErrorCode()));
         Type type = typeRepository.findById(typeId)
                 .orElseThrow(() -> new DataNotFoundException(PRIMARY_KEY_NOT_FOUND.getMessage(), PRIMARY_KEY_NOT_FOUND.getErrorCode()));
-
-        trailTypeRepository.save()
+        TrailType trailType = new TrailType();
+        trailType.setTrail(trail);
+        trailType.setType(type);
+        trailTypeRepository.save(trailType);
     }
 }
