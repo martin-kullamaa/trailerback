@@ -19,6 +19,7 @@ import ee.valiit.trailerback.persistance.trailtype.TrailType;
 import ee.valiit.trailerback.persistance.trailtype.TrailTypeRepository;
 import ee.valiit.trailerback.persistance.type.Type;
 import ee.valiit.trailerback.persistance.type.TypeMapper;
+import ee.valiit.trailerback.persistance.type.TypeRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,6 +28,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static ee.valiit.trailerback.infrastructure.Error.FOREIGN_KEY_NOT_FOUND;
+import static ee.valiit.trailerback.infrastructure.Error.PRIMARY_KEY_NOT_FOUND;
 
 @Service
 @RequiredArgsConstructor
@@ -41,6 +43,7 @@ public class TrailService {
     private final LocationStopRepository locationStopRepository;
     private final TrailTypeRepository trailTypeRepository;
     private final TypeMapper typeMapper;
+    private final TypeRepository typeRepository;
 
     @Transactional
     public Integer addTrailWithLocations(NewTrailDto newTrailDto) {
@@ -78,5 +81,14 @@ public class TrailService {
             typeDtos.add(typeMapper.typeToTypeDto(type));
         }
         return typeDtos;
+    }
+
+    public void addTrailType(Integer trailId, Integer typeId) {
+        Trail trail = trailRepository.findById(trailId)
+                .orElseThrow(() -> new DataNotFoundException(PRIMARY_KEY_NOT_FOUND.getMessage(), PRIMARY_KEY_NOT_FOUND.getErrorCode()));
+        Type type = typeRepository.findById(typeId)
+                .orElseThrow(() -> new DataNotFoundException(PRIMARY_KEY_NOT_FOUND.getMessage(), PRIMARY_KEY_NOT_FOUND.getErrorCode()));
+
+        trailTypeRepository.save()
     }
 }

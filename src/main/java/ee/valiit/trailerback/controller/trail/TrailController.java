@@ -21,8 +21,14 @@ public class TrailController {
     }
 
     @GetMapping("/trail")
+    @Operation(summary = "Gets all trail_types")
     public List<TypeDto> getTrailType(@RequestParam Integer trailId){
         return trailService.getTrailType(trailId);
     }
 
+    @PostMapping("/trail")
+    @Operation(summary = "Adds new trail_type")
+    public void addTrailType(@RequestParam Integer trailId, @RequestParam Integer typeId){
+        trailService.addTrailType(trailId, typeId);
+    }
 }
