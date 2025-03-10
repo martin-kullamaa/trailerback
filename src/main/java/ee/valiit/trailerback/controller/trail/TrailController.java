@@ -44,4 +44,16 @@ public class TrailController {
     public List<EquipmentDto> getTrailEquipment(@RequestParam Integer trailId){
         return trailService.getTrailEquipment(trailId);
     }
+
+    @PostMapping("/trail/equipment")
+    @Operation(summary = "Adds new trail_equipment")
+    public void addTrailEquipment(@RequestParam Integer trailId, @RequestParam Integer equipmentId){
+        trailService.addTrailEquipment(trailId, equipmentId);
+    }
+
+    @DeleteMapping("/trail/equipment")
+    @Operation(summary = "Deletes trail_equipment row")
+    public void deleteTrailEquipment(@RequestParam Integer trailId, @RequestParam Integer equipmentId){
+        trailService.deleteTrailEquipment(trailId, equipmentId);
+    }
 }

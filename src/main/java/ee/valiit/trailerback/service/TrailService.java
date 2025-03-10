@@ -7,6 +7,7 @@ import ee.valiit.trailerback.controller.type.TypeDto;
 import ee.valiit.trailerback.infrastructure.exception.DataNotFoundException;
 import ee.valiit.trailerback.persistance.equipment.Equipment;
 import ee.valiit.trailerback.persistance.equipment.EquipmentMapper;
+import ee.valiit.trailerback.persistance.equipment.EquipmentRepository;
 import ee.valiit.trailerback.persistance.locationstart.LocationStart;
 import ee.valiit.trailerback.persistance.locationstart.LocationStartMapper;
 import ee.valiit.trailerback.persistance.locationstart.LocationStartRepository;
@@ -51,6 +52,7 @@ public class TrailService {
     private final TypeRepository typeRepository;
     private final TrailEquipmentRepository trailEquipmentRepository;
     private final EquipmentMapper equipmentMapper;
+    private final EquipmentRepository equipmentRepository;
 
     @Transactional
     public Integer addTrailWithLocations(NewTrailDto newTrailDto) {
@@ -116,5 +118,21 @@ public class TrailService {
             equipmentDtos.add(equipmentDto);
         }
         return equipmentDtos;
+    }
+
+    public void addTrailEquipment(Integer trailId, Integer equipmentId) {
+        Trail trail = trailRepository.findById(trailId)
+                .orElseThrow(() -> new DataNotFoundException(PRIMARY_KEY_NOT_FOUND.getMessage(), PRIMARY_KEY_NOT_FOUND.getErrorCode()));
+        Equipment equipment = equipmentRepository.findById(equipmentId).orElseThrow(() -> new DataNotFoundException(PRIMARY_KEY_NOT_FOUND.getMessage(), PRIMARY_KEY_NOT_FOUND.getErrorCode()));
+        TrailEquipment trailEquipment = new TrailEquipment();
+        trailEquipment.setTrail(trail);
+        trailEquipment.setEquipment(equipment);
+        trailEquipmentRepository.save(trailEquipment);
+    }
+
+    public void deleteTrailEquipment(Integer trailId, Integer equipmentId) {
+        Trail trail = trailRepository.getReferenceById(trailId);
+        Equipment equipment = equipmentRepository.getReferenceById(equipmentId);
+        trailEquipmentRepository.deleteByTrailAndEquipment(trail, equipment);
     }
 }
