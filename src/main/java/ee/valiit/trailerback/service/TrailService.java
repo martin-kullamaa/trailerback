@@ -1,9 +1,12 @@
 package ee.valiit.trailerback.service;
 
+import ee.valiit.trailerback.controller.equipment.EquipmentDto;
 import ee.valiit.trailerback.controller.location.LocationStopDto;
 import ee.valiit.trailerback.controller.trail.NewTrailDto;
 import ee.valiit.trailerback.controller.type.TypeDto;
 import ee.valiit.trailerback.infrastructure.exception.DataNotFoundException;
+import ee.valiit.trailerback.persistance.equipment.Equipment;
+import ee.valiit.trailerback.persistance.equipment.EquipmentMapper;
 import ee.valiit.trailerback.persistance.locationstart.LocationStart;
 import ee.valiit.trailerback.persistance.locationstart.LocationStartMapper;
 import ee.valiit.trailerback.persistance.locationstart.LocationStartRepository;
@@ -15,6 +18,8 @@ import ee.valiit.trailerback.persistance.profile.ProfileRepository;
 import ee.valiit.trailerback.persistance.trail.Trail;
 import ee.valiit.trailerback.persistance.trail.TrailMapper;
 import ee.valiit.trailerback.persistance.trail.TrailRepository;
+import ee.valiit.trailerback.persistance.trailequipment.TrailEquipment;
+import ee.valiit.trailerback.persistance.trailequipment.TrailEquipmentRepository;
 import ee.valiit.trailerback.persistance.trailtype.TrailType;
 import ee.valiit.trailerback.persistance.trailtype.TrailTypeRepository;
 import ee.valiit.trailerback.persistance.type.Type;
@@ -44,6 +49,8 @@ public class TrailService {
     private final TrailTypeRepository trailTypeRepository;
     private final TypeMapper typeMapper;
     private final TypeRepository typeRepository;
+    private final TrailEquipmentRepository trailEquipmentRepository;
+    private final EquipmentMapper equipmentMapper;
 
     @Transactional
     public Integer addTrailWithLocations(NewTrailDto newTrailDto) {
@@ -98,5 +105,16 @@ public class TrailService {
         Trail trail = trailRepository.getReferenceById(trailId);
         Type type = typeRepository.getReferenceById(typeId);
         trailTypeRepository.deleteByTrailAndType(trail, type);
+    }
+
+    public List<EquipmentDto> getTrailEquipment(Integer trailId) {
+        List<TrailEquipment> trailEquipments = trailEquipmentRepository.findByTrailId(trailId);
+        List<EquipmentDto> equipmentDtos = new ArrayList<>();
+        for (TrailEquipment trailEquipment : trailEquipments){
+            Equipment equipment = trailEquipment.getEquipment();
+            EquipmentDto equipmentDto = equipmentMapper.equipmentToEquipmentDto(equipment);
+            equipmentDtos.add(equipmentDto);
+        }
+        return equipmentDtos;
     }
 }

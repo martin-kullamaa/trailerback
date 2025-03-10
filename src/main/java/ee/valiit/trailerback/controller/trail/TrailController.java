@@ -1,5 +1,6 @@
 package ee.valiit.trailerback.controller.trail;
 
+import ee.valiit.trailerback.controller.equipment.EquipmentDto;
 import ee.valiit.trailerback.controller.type.TypeDto;
 import ee.valiit.trailerback.service.TrailService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -36,5 +37,11 @@ public class TrailController {
     @Operation(summary = "Deletes trailType row")
     public void deleteTrailType(@RequestParam Integer trailId, @RequestParam Integer typeId){
         trailService.deleteTrailType(trailId, typeId);
+    }
+
+    @GetMapping("/trail/equipment")
+    @Operation(summary = "Gets trail types for trailId")
+    public List<EquipmentDto> getTrailEquipment(@RequestParam Integer trailId){
+        return trailService.getTrailEquipment(trailId);
     }
 }
