@@ -3,6 +3,7 @@ package ee.valiit.trailerback.service;
 import ee.valiit.trailerback.controller.equipment.EquipmentDto;
 import ee.valiit.trailerback.controller.location.LocationStopDto;
 import ee.valiit.trailerback.controller.trail.NewTrailDto;
+import ee.valiit.trailerback.controller.trail.TrailDto;
 import ee.valiit.trailerback.controller.type.TypeDto;
 import ee.valiit.trailerback.infrastructure.exception.DataNotFoundException;
 import ee.valiit.trailerback.persistance.equipment.Equipment;
@@ -60,8 +61,6 @@ public class TrailService {
         // LocationStart tabeli rea loomine ja salvestamine
         LocationStart locationStart = locationStartMapper.newTrailDtoToLocationStart(newTrailDto);
         locationStartRepository.save(locationStart);
-        // todo: delete later
-        System.out.println("Saved LocationStart ID: " + locationStart.getId());
 
         // Trail tabeli rea loomine ja salvestamine
         Trail trail = trailMapper.newTrailDtoToTrail(newTrailDto);
@@ -80,6 +79,18 @@ public class TrailService {
         }
 
         return trail.getId();
+    }
+
+    public TrailDto getTrailWithLocations(Integer locationStartId) {
+
+        Trail trail = trailRepository.findByLocationStartId(locationStartId)
+                .orElseThrow(() -> new DataNotFoundException(FOREIGN_KEY_NOT_FOUND.getMessage(), FOREIGN_KEY_NOT_FOUND.getErrorCode()));
+        LocationStart locationStart = locationStartRepository
+                .findById(locationStartId).orElseThrow(() -> new DataNotFoundException(PRIMARY_KEY_NOT_FOUND.getMessage(), PRIMARY_KEY_NOT_FOUND.getErrorCode()));
+        List<LocationStop> locationStops = locationStopRepository.findByLocationId(locationStartId);
+
+        return trailMapper.trailWithLocationsToTrailDto(trail, locationStart, locationStops);
+
     }
 
     public List<TypeDto> getTrailType(Integer trailId) {

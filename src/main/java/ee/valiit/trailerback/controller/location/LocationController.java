@@ -15,7 +15,7 @@ public class LocationController {
 
     private final LocationService locationService;
 
-    @GetMapping("/home")
+    @GetMapping("/location/start")
     public List<LocationStartDto> findLocationStarts() {
         return locationService.findLocationStarts();
     }

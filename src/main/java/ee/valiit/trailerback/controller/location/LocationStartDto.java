@@ -17,6 +17,8 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 @NoArgsConstructor
 public class LocationStartDto implements Serializable {
+    @NotNull
+    private Integer startId;
     @Size(max = 255)
     private String name;
     @NotNull

@@ -21,6 +21,12 @@ public class TrailController {
        return trailService.addTrailWithLocations(newTrailDto);
     }
 
+    @GetMapping("/trail")
+    @Operation(summary = "Gets trail, location_start, location_stop in a single DTO")
+    public TrailDto getTrailWithLocations(@RequestParam Integer startId){
+        return trailService.getTrailWithLocations(startId);
+    }
+
     @GetMapping("/trail/type")
     @Operation(summary = "Gets all trail_types")
     public List<TypeDto> getTrailType(@RequestParam Integer trailId){
