@@ -18,5 +18,8 @@ public interface TrailTypeRepository extends JpaRepository<TrailType, Integer> {
     @Query("delete from TrailType t where t.trail = ?1 and t.type = ?2")
     int deleteByTrailAndType(Trail trail, Type type);
 
+    @Query("select t from TrailType t where t.type.id = ?1")
+    List<TrailType> findByTypeId(Integer id);
+
 
 }
