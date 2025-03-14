@@ -18,4 +18,10 @@ public interface TrailPictureRepository extends JpaRepository<TrailPicture, Inte
     @Query("delete from TrailPicture t where t.trail = ?1 and t.name = ?2")
     int deleteByTrailAndPictureName(Trail trail, String name);
 
+    @Transactional
+    @Modifying
+    @Query("delete from TrailPicture t where t.trail = ?1")
+    int deleteByTrail(Trail trail);
+
+
 }

@@ -12,6 +12,11 @@ import java.util.List;
 public interface TrailEquipmentRepository extends JpaRepository<TrailEquipment, Integer> {
     @Transactional
     @Modifying
+    @Query("delete from TrailEquipment t where t.trail = ?1")
+    int deleteByTrail(Trail trail);
+
+    @Transactional
+    @Modifying
     @Query("delete from TrailEquipment t where t.trail = ?1 and t.equipment = ?2")
     int deleteByTrailAndEquipment(Trail trail, Equipment equipment);
 

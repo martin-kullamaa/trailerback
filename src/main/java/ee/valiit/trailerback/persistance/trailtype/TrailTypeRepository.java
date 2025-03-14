@@ -10,6 +10,11 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 public interface TrailTypeRepository extends JpaRepository<TrailType, Integer> {
+    @Transactional
+    @Modifying
+    @Query("delete from TrailType t where t.trail = ?1")
+    int deleteByTrail(Trail trail);
+
     @Query("select t from TrailType t where t.trail.id = ?1")
     List<TrailType> findByTrailId(Integer id);
 

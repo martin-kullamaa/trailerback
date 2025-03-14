@@ -22,6 +22,7 @@ import ee.valiit.trailerback.persistance.trail.TrailMapper;
 import ee.valiit.trailerback.persistance.trail.TrailRepository;
 import ee.valiit.trailerback.persistance.trailequipment.TrailEquipment;
 import ee.valiit.trailerback.persistance.trailequipment.TrailEquipmentRepository;
+import ee.valiit.trailerback.persistance.trailpicture.TrailPictureRepository;
 import ee.valiit.trailerback.persistance.trailtype.TrailType;
 import ee.valiit.trailerback.persistance.trailtype.TrailTypeRepository;
 import ee.valiit.trailerback.persistance.type.Type;
@@ -54,6 +55,7 @@ public class TrailService {
     private final TrailEquipmentRepository trailEquipmentRepository;
     private final EquipmentMapper equipmentMapper;
     private final EquipmentRepository equipmentRepository;
+    private final TrailPictureRepository trailPictureRepository;
 
     @Transactional
     public Integer addTrailWithLocations(NewTrailDto newTrailDto) {
@@ -114,6 +116,23 @@ public class TrailService {
         }
 
         return trailDto.getTrailId();
+    }
+
+    @Transactional
+    public void deleteTrail(Integer startId) {
+        LocationStart locationStart = locationStartRepository.getReferenceById(startId);
+        List<LocationStop> locationStops = locationStopRepository.findByLocationId(startId);
+        for (LocationStop locationStop : locationStops) {
+            locationStopRepository.delete(locationStop);
+        }
+        Trail trail = trailRepository.findByLocationStartId(startId)
+                .orElseThrow(() -> new DataNotFoundException(FOREIGN_KEY_NOT_FOUND.getMessage(), FOREIGN_KEY_NOT_FOUND.getErrorCode()));
+
+        trailTypeRepository.deleteByTrail(trail);
+        trailPictureRepository.deleteByTrail(trail);
+        trailEquipmentRepository.deleteByTrail(trail);
+        trailRepository.delete(trail);
+        locationStartRepository.delete(locationStart);
     }
 
     public List<TypeDto> getTrailType(Integer trailId) {

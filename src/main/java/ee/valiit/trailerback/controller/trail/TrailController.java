@@ -33,6 +33,12 @@ public class TrailController {
         return trailService.updateTrailWithLocations(trailDto);
     }
 
+    @DeleteMapping("/trail")
+    @Operation(summary = "Deletes trail by locationStartId")
+    public void deleteTrail(@RequestParam Integer startId) {
+        trailService.deleteTrail(startId);
+    }
+
     @GetMapping("/trail/type")
     @Operation(summary = "Gets all trail_types")
     public List<TypeDto> getTrailType(@RequestParam Integer trailId){
