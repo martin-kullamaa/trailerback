@@ -2,6 +2,7 @@ package ee.valiit.trailerback.persistance.locationstart;
 
 import ee.valiit.trailerback.controller.location.LocationStartDto;
 import ee.valiit.trailerback.controller.trail.NewTrailDto;
+import ee.valiit.trailerback.controller.trail.TrailDto;
 import org.mapstruct.*;
 
 import java.util.List;
@@ -22,5 +23,10 @@ public interface LocationStartMapper {
     @Mapping(source = "startLatitude", target = "latitude")
     @Mapping(source = "startLongitude", target = "longitude")
     LocationStart newTrailDtoToLocationStart(NewTrailDto newTrailDto);
+
+    @Mapping(source = "startName", target = "name")
+    @Mapping(source = "startLatitude", target = "latitude")
+    @Mapping(source = "startLongitude", target = "longitude")
+    void updateLocationStartFromTrailDto(TrailDto trailDto, @MappingTarget LocationStart locationStart);
 
 }

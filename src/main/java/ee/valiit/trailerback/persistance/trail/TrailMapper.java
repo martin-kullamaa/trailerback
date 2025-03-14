@@ -7,10 +7,7 @@ import ee.valiit.trailerback.persistance.locationstart.LocationStart;
 import ee.valiit.trailerback.persistance.locationstop.LocationStop;
 import ee.valiit.trailerback.status.Status;
 import jakarta.validation.constraints.NotNull;
-import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
-import org.mapstruct.MappingConstants;
-import org.mapstruct.ReportingPolicy;
+import org.mapstruct.*;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -39,4 +36,9 @@ public interface TrailMapper {
 
     // Assuming you have a mapping method for a single LocationStop to its DTO:
     LocationStopDto locationStopToLocationStopDto(LocationStop locationStop);
+
+    @Mapping(source = "trailName", target = "name")
+    @Mapping(source = "trailDescription", target = "description")
+    @Mapping(source = "trailLength", target = "length")
+    void updateTrailFromTrailDto(TrailDto trailDto,@MappingTarget Trail trail);
 }

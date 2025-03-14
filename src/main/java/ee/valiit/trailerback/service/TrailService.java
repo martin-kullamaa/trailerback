@@ -93,7 +93,26 @@ public class TrailService {
 
     }
 
+    @Transactional
     public Integer updateTrailWithLocations(TrailDto trailDto) {
+
+        Trail trail = trailRepository.findById(trailDto.getTrailId()).orElseThrow(() -> new DataNotFoundException(PRIMARY_KEY_NOT_FOUND.getMessage(), PRIMARY_KEY_NOT_FOUND.getErrorCode()));
+        LocationStart locationStart = trail.getLocationStart();
+        locationStartMapper.updateLocationStartFromTrailDto(trailDto, locationStart);
+        locationStartRepository.save(locationStart);
+
+        trailMapper.updateTrailFromTrailDto(trailDto, trail);
+        trailRepository.save(trail);
+
+        locationStopRepository.deleteByLocationStart(locationStart);
+
+        List<LocationStopDto> locationStopDtos = trailDto.getLocationStopDtos();
+        for (LocationStopDto locationStopDto : locationStopDtos) {
+            LocationStop locationStop = locationStopMapper.locationStopDtoToLocationStop(locationStopDto);
+            locationStop.setLocation(locationStart);
+            locationStopRepository.save(locationStop);
+        }
+
         return trailDto.getTrailId();
     }
 
