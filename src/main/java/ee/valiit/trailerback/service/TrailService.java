@@ -58,11 +58,11 @@ public class TrailService {
     @Transactional
     public Integer addTrailWithLocations(NewTrailDto newTrailDto) {
 
-        // LocationStart tabeli rea loomine ja salvestamine
+        // LocationStart table row mapping and saving
         LocationStart locationStart = locationStartMapper.newTrailDtoToLocationStart(newTrailDto);
         locationStartRepository.save(locationStart);
 
-        // Trail tabeli rea loomine ja salvestamine
+        // Trail table row creating and saving
         Trail trail = trailMapper.newTrailDtoToTrail(newTrailDto);
         Profile profile = profileRepository.findById(newTrailDto.getProfileId())
                 .orElseThrow(() -> new DataNotFoundException(FOREIGN_KEY_NOT_FOUND.getMessage(), FOREIGN_KEY_NOT_FOUND.getErrorCode()));
@@ -70,7 +70,7 @@ public class TrailService {
         trail.setLocationStart(locationStart);
         trailRepository.save(trail);
 
-        // LocationStop tabeli ridade loomine ja salvestamine
+        // LocationStop table row creating and saving
         List<LocationStopDto> locationStopDtos = newTrailDto.getLocationStopDtos();
         for (LocationStopDto locationStopDto : locationStopDtos) {
             LocationStop locationStop = locationStopMapper.locationStopDtoToLocationStop(locationStopDto);
