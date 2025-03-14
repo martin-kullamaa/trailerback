@@ -15,6 +15,12 @@ public class LocationController {
 
     private final LocationService locationService;
 
+    @GetMapping("/location")
+    @Operation(summary = "Gets locations startId by trailId")
+    public Integer getLocationStart(@RequestParam Integer trailId) {
+        return locationService.getLocationStart(trailId);
+    }
+
     @GetMapping("/location/start")
     public List<LocationStartDto> findLocationStarts() {
         return locationService.findLocationStarts();
