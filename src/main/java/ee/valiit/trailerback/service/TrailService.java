@@ -93,6 +93,10 @@ public class TrailService {
 
     }
 
+    public Integer updateTrailWithLocations(TrailDto trailDto) {
+        return trailDto.getTrailId();
+    }
+
     public List<TypeDto> getTrailType(Integer trailId) {
         List<TrailType> trailTypes = trailTypeRepository.findByTrailId(trailId);
         List<TypeDto> typeDtos = new ArrayList<>();
@@ -146,4 +150,5 @@ public class TrailService {
         Equipment equipment = equipmentRepository.getReferenceById(equipmentId);
         trailEquipmentRepository.deleteByTrailAndEquipment(trail, equipment);
     }
+
 }
